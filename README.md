@@ -42,3 +42,55 @@ Everything the exercises need is already configured: `kotlin-parcelize`
 `material-icons-extended` (the lesson 4 FAB icon). Do not change
 `gradle/libs.versions.toml` — in particular Kotlin must stay at 2.4.10 or
 newer, or lesson 6 will not compile.
+
+## Submitting your work
+
+You work on your own branch and hand it in by pushing that branch. Nobody
+touches anybody else's branch, and nobody touches `main`.
+
+**1. Make your branch.** Name it after yourself: full name, lowercase, words
+joined by hyphens. `Chea Reaksa` becomes `chea-reaksa`.
+
+```bash
+git checkout -b chea-reaksa
+```
+
+Check you are on it before you start typing:
+
+```bash
+git branch --show-current
+```
+
+**2. Commit as you go.** One commit per lesson is a good rhythm — don't save
+everything for the last minute.
+
+```bash
+git add -A
+git commit -m "Lesson 3: LazyColumn with key"
+```
+
+**3. Push to hand in.** The first push needs `-u`, after that `git push` is
+enough.
+
+```bash
+git push -u origin chea-reaksa
+```
+
+You can push again as many times as you like before the deadline. Each push
+updates your submission — the last one before the deadline is the one marked.
+
+### Rules
+
+- **Never push to `main`.** It is the clean starter every classmate clones. If
+  you commit your work onto `main` by accident, tell your teacher instead of
+  trying to undo it yourself.
+- **One branch per student**, named after you. Do not commit on a classmate's
+  branch.
+- Your branch is public, like the rest of this repository. Anyone can read it.
+
+### If push is refused
+
+`remote: Permission to ... denied` means your GitHub account is not on the
+repository yet. Check your email for the collaborator invitation and accept it,
+then push again. If there is no invitation, tell your teacher — and make sure
+the GitHub username you wrote on the class sheet is spelled exactly right.
