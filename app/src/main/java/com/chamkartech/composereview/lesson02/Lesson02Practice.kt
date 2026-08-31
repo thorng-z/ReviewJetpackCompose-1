@@ -2,6 +2,7 @@ package com.chamkartech.composereview.lesson02
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,6 +23,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ExpenseRowPractice() {
     // PROBLEM 1: this stacks vertically, you need horizontal
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .background(Color(0xFFE8ECFF), RoundedCornerShape(8.dp))
+            .padding(16.dp)
+    ) {
+        Text("Iced coffee")
+        Spacer(Modifier.weight(1f))
+        Text("6,000 ៛")
+    }
     Column(
         modifier = Modifier
             // PROBLEM 2: the background does not cover the padding
