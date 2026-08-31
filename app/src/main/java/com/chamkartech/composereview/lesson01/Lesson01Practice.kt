@@ -16,17 +16,19 @@ import androidx.compose.ui.unit.dp
  *
  * Check yourself: click three times, you should see On -> Off -> On.
  */
+
 @Composable
 fun TogglePractice() {
     // TODO 1: declare the state here
+    var isOn by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(24.dp)) {
-
         // TODO 2: make this text depend on the state
-        Text(text = "Off")
+        Text(text = if (isOn) "On" else "Off")
 
         Button(onClick = {
             // TODO 3: change the state here
+            isOn = !isOn
         }) {
             Text("Toggle")
         }
@@ -39,8 +41,29 @@ fun TogglePractice() {
  *
  * Answer these in order and the bug will find itself:
  *   1. Where does the state live?
+ *      The state live there:
+ *          var isOn by remember { mutableStateOf(false) }
+ *          remember keeps the state across recompositions.
+ *          mutableStateOf(false) creates observable state.
+ *          isOn starts as false.
+ *
  *   2. What does the Text actually read?
+ *      The Text reads the current value of isOn:
+ *          Text(text = if (isOn) "On" else "Off")
+ *      When:
+ *          isOn == false → displays "Off"
+ *          isOn == true → displays "On"
+ *      Because Text reads isOn, Compose knows it depends on this state and will recompose when it changes.
+ *
  *   3. What does the button do to the state?
+ *      The button toggles the value:
+        * Button(onClick = {
+           isOn = !isOn
+       })
+       * Each click changes:
+       * false → true
+       * true → fals
+       * false → true
  */
 @Composable
 fun BrokenToggle() {
