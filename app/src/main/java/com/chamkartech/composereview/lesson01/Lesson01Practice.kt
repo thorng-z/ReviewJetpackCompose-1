@@ -70,7 +70,7 @@ fun BrokenToggle() {
     var isOn by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(24.dp)) {
-        Text(text = "Off")
+        Text(text = if (isOn) "On" else "Off")
 
         Button(onClick = { isOn = !isOn }) {
             Text("Toggle")
