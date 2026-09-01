@@ -29,6 +29,7 @@ import com.chamkartech.composereview.common.loadExpenses
  * startup, not 200. Scrolling is smooth, and the last row scrolls
  * clear of the bottom edge.
  */
+
 @Composable
 fun ExpenseListPractice(expenses: List<Expense> = loadExpenses(200)) {
     // TODO 1: switch to LazyColumn
