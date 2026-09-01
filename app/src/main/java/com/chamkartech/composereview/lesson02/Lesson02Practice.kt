@@ -56,7 +56,9 @@ fun ExpenseRowPractice() {
 fun ThreeAcrossPractice() {
     Row(modifier = Modifier.fillMaxWidth()) {
         Text("Left")
+        Spacer(Modifier.weight(1f))
         Text("Middle")
+        Spacer(Modifier.weight(1f))
         Text("Right")
     }
 }
