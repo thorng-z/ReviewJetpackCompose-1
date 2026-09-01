@@ -42,8 +42,9 @@ fun ExpenseListPractice(expenses: List<Expense> = loadExpenses(200)) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(rememberScrollState())
             // TODO 3: this padding must go inside the scroll area
+            .padding(16.dp)
     ) {
         // TODO 2: use items() and add a key
         expenses.forEach { item ->
