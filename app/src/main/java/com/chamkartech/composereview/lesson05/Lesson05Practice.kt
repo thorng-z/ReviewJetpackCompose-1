@@ -27,7 +27,8 @@ import androidx.compose.ui.unit.dp
  */
 @Composable
 fun CounterPractice() {
-    var count by mutableStateOf(0)
+
+    var count by remember { mutableStateOf(0) }
 
     Column(modifier = Modifier.padding(24.dp)) {
         Text("Clicked $count times")
