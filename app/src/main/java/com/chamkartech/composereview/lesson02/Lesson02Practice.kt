@@ -42,6 +42,7 @@ fun ExpenseRowPractice() {
         Text("Iced coffee")
 
         // TODO: push the price to the right edge
+        Spacer(Modifier.weight(1f))
 
         Text("6,000 R")
     }
