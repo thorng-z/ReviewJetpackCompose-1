@@ -15,6 +15,7 @@ import com.chamkartech.composereview.common.loadExpenses
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 /*
  * LESSON 7 — PRACTICE
@@ -37,31 +38,53 @@ class ExpenseViewModelPractice : ViewModel() {
 
     // TODO 1: load the expenses here, in an init block,
     //         and compute the total while you are at it
+    init {
+        val expenses = loadExpenses(200)
+        val total = expenses.sumOf { it.amount }
+
+        _uiState.value = ExpenseUiState(
+            expenses = expenses,
+            total = total
+        )
+    }
 
     // TODO 3: this runs, the data is correct, and the screen never moves.
     //         Log the list size to prove the data changed, then work out
     //         why the UI does not know, and fix it.
     fun addExpense(item: Expense) {
-        _uiState.value.expenses.toMutableList().add(item)
+        val currentExpenses = _uiState.value.expenses
+
+        val newExpenses = currentExpenses + item
+        val newTotal = newExpenses.sumOf { it.amount }
+
+        _uiState.value = _uiState.value.copy(
+            expenses = newExpenses,
+            total = newTotal
+        )
     }
 }
 
 @Composable
-fun ExpenseScreenWithViewModel() {
+fun ExpenseScreenWithViewModel(
+    viewModel: ExpenseViewModelPractice = viewModel()
+) {
     // TODO 1: delete this line, take the data from the ViewModel instead
-    val expenses by remember { mutableStateOf(loadExpenses(200)) }
+//    val expenses by remember { mutableStateOf(loadExpenses(200)) }
+    val uiState by viewModel.uiState.collectAsState()
+
 
     // TODO 2: this calculation belongs in the ViewModel, not in the UI
-    val total = expenses.sumOf { it.amount }
+//    val total = uiState.sumOf { it.amount }
+
 
     Column {
-        Text("Total: $total R")
+        Text("Total: $uiState R")
 
         LazyColumn(
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(expenses, key = { it.id }) { ExpenseRow(it) }
+            items(uiState.expenses, key = { it.id }) { ExpenseRow(it) }
         }
     }
 }
